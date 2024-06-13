@@ -13,7 +13,9 @@ import com.enterprise.mixsale.common.AbstractCommon;
 import com.enterprise.mixsale.dto.response.JwtResponseDTO;
 import com.enterprise.mixsale.dto.response.RefreshTokenDTO;
 import com.enterprise.mixsale.payload.ApiResponse;
+import com.enterprise.mixsale.repository.AuthenticationRepository;
 import com.enterprise.mixsale.service.AuthenService;
+import com.enterprise.mixsale.service.JwtService;
 import com.enterprise.mixsale.service.RefreshTokenService;
 import com.enterprise.mixsale.util.Constants;
 
@@ -29,6 +31,12 @@ public class AuthenController extends AbstractCommon {
 	
 	@Autowired
 	RefreshTokenService refreshTokenService;
+	
+	@Autowired
+	AuthenticationRepository authenticationRepository;
+	
+	@Autowired
+    JwtService jwtService;
 
 	
 	@GetMapping("/login")
@@ -54,7 +62,10 @@ public class AuthenController extends AbstractCommon {
 		if(ObjectUtils.isNotEmpty(refreshTokenDTO)) {
 			refreshTokenDTO = refreshTokenService.verifyExpiration(refreshTokenDTO);
 			if(ObjectUtils.isNotEmpty(refreshTokenDTO)) {
+				var user = authenticationRepository.findById(refreshTokenDTO.getUserId()).orElseThrow(() -> new IllegalArgumentException("Invalid email or password."));
+				 var jwt = jwtService.generateToken(user);
 				return JwtResponseDTO.builder()
+						.accessToken(jwt)
                         .token(refreshToken).build();
 			}
 		}else {
