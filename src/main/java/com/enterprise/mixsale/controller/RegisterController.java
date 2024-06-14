@@ -8,21 +8,24 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.enterprise.mixsale.common.AbstractCommon;
 import com.enterprise.mixsale.payload.ApiResponse;
-import com.enterprise.mixsale.util.Constants;
+import com.enterprise.mixsale.payload.CustomerUserAttr;
+import com.enterprise.mixsale.util.AppConstants;
 
 import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping(value = Constants.PROJECT_VERSION + "/login")
-public class LoginController extends AbstractCommon{
+@RequestMapping(value = AppConstants.PROJECT_VERSION + "/register")
+public class RegisterController extends AbstractCommon{
 
-	@GetMapping("/testFunction")
-	public ResponseEntity<ApiResponse> testFunction(HttpServletRequest request, String value) {
+	@GetMapping("/getById")
+	public ResponseEntity<ApiResponse> getById(HttpServletRequest request, String value) {
+		
+		CustomerUserAttr cutomerUserAttr = super.getCustomerUserAttr(request);
 		
 		ApiResponse response = new ApiResponse();
 
 		try {
-			response = getOkResponseData(value);
+			response = getOkResponseData(cutomerUserAttr);
 			
 		} catch (Exception e) {
 			// TODO: handle exception

@@ -11,6 +11,7 @@ public class UserDetailResDTO {
 
 	private Long id;
 	private Long userId;
+	private String empNo;
 	private String fristName;
 	private String middleName;
 	private String lastName;

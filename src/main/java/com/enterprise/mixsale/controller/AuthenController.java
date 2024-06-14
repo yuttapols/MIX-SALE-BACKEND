@@ -17,12 +17,12 @@ import com.enterprise.mixsale.repository.AuthenticationRepository;
 import com.enterprise.mixsale.service.AuthenService;
 import com.enterprise.mixsale.service.JwtService;
 import com.enterprise.mixsale.service.RefreshTokenService;
-import com.enterprise.mixsale.util.Constants;
+import com.enterprise.mixsale.util.AppConstants;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping(value = Constants.PROJECT_VERSION + "/authen")
+@RequestMapping(value = AppConstants.PROJECT_VERSION + "/authen")
 @RequiredArgsConstructor
 public class AuthenController extends AbstractCommon {
 

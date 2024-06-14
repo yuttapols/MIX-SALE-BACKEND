@@ -19,7 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.enterprise.mixsale.common.PlainTextPasswordEncoder;
 import com.enterprise.mixsale.jwt.JwtAuthenticationFilter;
 import com.enterprise.mixsale.service.UserService;
-import com.enterprise.mixsale.util.Constants;
+import com.enterprise.mixsale.util.AppConstants;
 
 import lombok.RequiredArgsConstructor;
 
@@ -35,7 +35,7 @@ public class SecurityConfig {
 	private UserService userService;
 	
     private static final String[] AUTH_WHITELIST = {
-            Constants.PROJECT_VERSION + "/authen/**",
+    		AppConstants.PROJECT_VERSION + "/authen/**",
             "/v3/api-docs/**",
             "/swagger-ui/**",
             "/error"

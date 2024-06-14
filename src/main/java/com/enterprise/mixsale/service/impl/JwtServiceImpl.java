@@ -1,12 +1,18 @@
 package com.enterprise.mixsale.service.impl;
 
 import java.security.Key;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -73,5 +79,15 @@ public class JwtServiceImpl implements JwtService {
 		byte[] keyBytes = Decoders.BASE64.decode(jwtSigningKey);
 		return Keys.hmacShaKeyFor(keyBytes);
 	}
+	
+	
+	public Authentication getAuthentication(String token) {
+		Claims claims = Jwts.parserBuilder().setSigningKey(getSigningKey()).build().parseClaimsJws(token).getBody();
+
+        Collection<? extends GrantedAuthority> authorities = new ArrayList<>();
+        User principal = new User(claims.getSubject(), token, authorities);
+
+        return new UsernamePasswordAuthenticationToken(principal, token, authorities);
+    }
 
 }

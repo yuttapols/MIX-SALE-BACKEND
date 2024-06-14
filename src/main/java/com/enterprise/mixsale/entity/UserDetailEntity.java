@@ -34,6 +34,9 @@ public class UserDetailEntity {
 	@Column(name = "prefix_id")
 	private Long prefixId;
 	
+	@Column(name = "emp_no")
+	private String empNo;
+	
 	@Column(name = "frist_name")
 	private String fristName;
 	
