@@ -1,5 +1,7 @@
 package com.enterprise.mixsale.service.impl;
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.enterprise.mixsale.dto.response.AuthenticationResDTO;
 import com.enterprise.mixsale.dto.response.RefreshTokenDTO;
+import com.enterprise.mixsale.dto.response.UserDetailResDTO;
 import com.enterprise.mixsale.repository.AuthenticationRepository;
 import com.enterprise.mixsale.service.AuthenService;
 import com.enterprise.mixsale.service.JwtService;
@@ -34,6 +37,9 @@ public class AuthenServiceImpl implements AuthenService{
 	
 	@Autowired
 	RefreshTokenService refreshTokenService;
+	
+	@Autowired
+	private ModelMapper mapper;
 
     @Override
     public AuthenticationResDTO login(String userName, String password) {
@@ -56,6 +62,7 @@ public class AuthenServiceImpl implements AuthenService{
             	.updateDate(user.getUpdateDate())
             	.accessToken(jwt)
             	.token(refreshTokenDTO.getToken())
+            	.userDetail(mapper.map(user.getUserDetail(), new TypeToken<UserDetailResDTO>() {}.getType()))
             	.build();
     }
 

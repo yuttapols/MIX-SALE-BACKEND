@@ -2,6 +2,8 @@ package com.enterprise.mixsale.dto.response;
 
 import java.sql.Timestamp;
 
+import com.enterprise.mixsale.entity.PrefixEntity;
+
 import lombok.Data;
 
 @Data
@@ -9,7 +11,6 @@ public class UserDetailResDTO {
 
 	private Long id;
 	private Long userId;
-	private Long prefixId;
 	private String fristName;
 	private String middleName;
 	private String lastName;
@@ -32,5 +33,5 @@ public class UserDetailResDTO {
 	private Timestamp updateDate;
 	
 	//prefix
-	private PrefixResDTO prefix;
+	private PrefixEntity prefix;
 }
