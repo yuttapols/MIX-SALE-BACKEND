@@ -2,6 +2,7 @@ package com.enterprise.mixsale.dto.response;
 
 import java.sql.Timestamp;
 
+import com.enterprise.mixsale.entity.DepartmentEntity;
 import com.enterprise.mixsale.entity.PrefixEntity;
 
 import lombok.Data;
@@ -35,4 +36,5 @@ public class UserDetailResDTO {
 	
 	//prefix
 	private PrefixEntity prefix;
+	private DepartmentEntity department;
 }
