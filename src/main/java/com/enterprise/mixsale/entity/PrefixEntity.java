@@ -16,21 +16,24 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.Data;
 
-@Data
 @Entity
-@Table(name = "role")
-public class RoleEntity{
+@Data
+@Table(name = "prefix")
+public class PrefixEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
 	
-	@Column(name = "role_name")
-	private String roleName;
+	@Column(name = "prefix_name_th")
+	private String prefixNameTh;
 	
-	@Column(name = "role_desc")
-	private String roleDesc;
+	@Column(name = "prefix_name_eng")
+	private String prefixNameEng;
+	
+	@Column(name = "prefix_desc")
+	private String prefixDesc;
 	
 	@Column(name = "status")
 	private String status;
@@ -51,5 +54,4 @@ public class RoleEntity{
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "update_date")
 	private Timestamp updateDate;
-	
 }

@@ -1,6 +1,5 @@
 package com.enterprise.mixsale.entity;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.List;
@@ -27,13 +26,14 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "authentication")
-public class AuthenticationEntity implements Serializable, UserDetails {
+public class AuthenticationEntity implements UserDetails {
 
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 205421000624800450L;
-	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -71,6 +71,10 @@ public class AuthenticationEntity implements Serializable, UserDetails {
 	@OneToOne
     @JoinColumn(name = "role_id", referencedColumnName = "id" , insertable=false, updatable=false)
     private RoleEntity role;
+	
+	@OneToOne
+	@JoinColumn(name = "id", referencedColumnName = "user_id" , insertable=false, updatable=false)
+	private UserDetailEntity userDetail;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -22,4 +22,7 @@ public class AuthenticationResDTO {
 	// token
 	private String accessToken;
     private String token;
+    
+    //user
+    private UserDetailResDTO userDetail;
 }
