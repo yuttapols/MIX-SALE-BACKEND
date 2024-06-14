@@ -26,7 +26,7 @@ public class JwtServiceImpl implements JwtService {
 	@Value("${token.signing.key}")
 	private String jwtSigningKey;
 	
-	public static final long JWT_TOKEN_VALIDITY = 1 * 60 * 60 * 24;
+	public static final long JWT_TOKEN_VALIDITY =  30 * 60;
 
 	@Override
 	public String extractUserName(String token) {
