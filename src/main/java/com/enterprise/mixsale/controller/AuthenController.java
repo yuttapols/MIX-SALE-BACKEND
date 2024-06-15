@@ -63,7 +63,7 @@ public class AuthenController extends AbstractCommon {
 			refreshTokenDTO = refreshTokenService.verifyExpiration(refreshTokenDTO);
 			if(ObjectUtils.isNotEmpty(refreshTokenDTO)) {
 				var user = authenticationRepository.findById(refreshTokenDTO.getUserId()).orElseThrow(() -> new IllegalArgumentException("Invalid email or password."));
-				 var jwt = jwtService.generateToken(user);
+				var jwt = jwtService.generateToken(user);
 				return JwtResponseDTO.builder()
 						.accessToken(jwt)
                         .token(refreshToken).build();
