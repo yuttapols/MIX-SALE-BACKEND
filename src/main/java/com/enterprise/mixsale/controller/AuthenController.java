@@ -55,9 +55,9 @@ public class AuthenController extends AbstractCommon {
 	}
 	
 	@GetMapping("/refreshToken")
-	public JwtResponseDTO refreshToken(@RequestParam String refreshToken){
+	public JwtResponseDTO refreshToken(@RequestParam(name="token") String token){
 		
-		RefreshTokenDTO refreshTokenDTO = refreshTokenService.findByToken(refreshToken);
+		RefreshTokenDTO refreshTokenDTO = refreshTokenService.findByToken(token);
 		
 		if(ObjectUtils.isNotEmpty(refreshTokenDTO)) {
 			refreshTokenDTO = refreshTokenService.verifyExpiration(refreshTokenDTO);
@@ -66,7 +66,7 @@ public class AuthenController extends AbstractCommon {
 				var jwt = jwtService.generateToken(user);
 				return JwtResponseDTO.builder()
 						.accessToken(jwt)
-                        .token(refreshToken).build();
+                        .token(token).build();
 			}
 		}else {
 			new RuntimeException("Refresh Token is not in DB..!!");
