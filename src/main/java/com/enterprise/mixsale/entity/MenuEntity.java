@@ -18,11 +18,17 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @Table(name = "menu")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class MenuEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

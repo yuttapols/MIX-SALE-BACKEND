@@ -1,7 +1,6 @@
 package com.enterprise.mixsale.service.impl;
 
 import java.security.NoSuchAlgorithmException;
-import java.sql.Timestamp;
 
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +16,7 @@ import com.enterprise.mixsale.repository.AuthenticationRepository;
 import com.enterprise.mixsale.repository.UserDetailRepository;
 import com.enterprise.mixsale.service.UserManageService;
 import com.enterprise.mixsale.util.Constants;
+import com.enterprise.mixsale.util.DateUtil;
 import com.enterprise.mixsale.util.FunctionUtil;
 import com.enterprise.mixsale.util.Md5Util;
 
@@ -39,7 +39,7 @@ public class UserManageServiceImpl implements UserManageService{
 			AuthenticationEntity authenEntity = new AuthenticationEntity();
 			authenEntity.setStatus(Constants.STATUS_NORMAL);
 			authenEntity.setCreateBy(empNo);
-			authenEntity.setCreateDate(new Timestamp(System.currentTimeMillis()));
+			authenEntity.setCreateDate(DateUtil.createTimestmapNow());
 			authenEntity.setUserName(registerReq.getUserName());
 			authenEntity.setPassword(Md5Util.genarateMd5(registerReq.getPassword()));
 			authenEntity.setRoleId(registerReq.getRoleId());
@@ -68,7 +68,7 @@ public class UserManageServiceImpl implements UserManageService{
 				userDetailEntity.setProvincesId(registerReq.getProvincesId());
 				userDetailEntity.setStatus(Constants.STATUS_NORMAL);
 				userDetailEntity.setCreateBy(empNo);
-				userDetailEntity.setCreateDate(new Timestamp(System.currentTimeMillis()));
+				userDetailEntity.setCreateDate(DateUtil.createTimestmapNow());
 				userDetailRepository.save(userDetailEntity);
 			}
 		}

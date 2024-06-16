@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import lombok.Data;
 
 @Data
-public class SubMenuDTO {
+public class SubMenuResDTO {
 
 	private Long id;
 	private Long menuId;

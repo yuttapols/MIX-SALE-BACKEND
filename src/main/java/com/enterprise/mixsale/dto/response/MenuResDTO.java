@@ -8,7 +8,7 @@ import com.enterprise.mixsale.entity.SubMenuEntity;
 import lombok.Data;
 
 @Data
-public class MenuDTO {
+public class MenuResDTO {
 	private Long id;
 	private Long roleId;
 	private String menuNameTh;
