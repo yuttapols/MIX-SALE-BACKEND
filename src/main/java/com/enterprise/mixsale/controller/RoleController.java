@@ -33,4 +33,19 @@ public class RoleController extends AbstractCommon{
 
 		return ResponseEntity.ok(response) ;
 	}
+	
+	@GetMapping("/getAllMenu")
+	public ResponseEntity<ApiResponse> getAllMenu(){
+		ApiResponse response = new ApiResponse();
+		
+		try {
+			response = getOkResponseData(roleService.getAllMenuRole());
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			response = getOkResponse(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage()) ;
+		}
+
+		return ResponseEntity.ok(response) ;
+	}
 }

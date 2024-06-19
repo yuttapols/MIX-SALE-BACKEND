@@ -5,11 +5,11 @@ import java.sql.Timestamp;
 import lombok.Data;
 
 @Data
-public class RoleResDTO {
+public class MenuRoleResDTO {
 
 	private Long id;
-	private String roleNameEng;
-	private String roleNameTh;
+	private String menuRoleNameEng;
+	private String menuR;
 	private String status;
 	private String createBy;
 	private Timestamp createDate;

@@ -1,7 +1,10 @@
 package com.enterprise.mixsale.service.impl;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
+import java.util.Optional;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +38,7 @@ public class UserManageServiceImpl implements UserManageService{
 	public void save(CustomerUserAttr userAttr, UserManageReqDTO registerReq) throws NoSuchAlgorithmException {
 		
 		if(ObjectUtils.isNotEmpty(registerReq)) {
-			String empNo = userAttr.getEmpNo();
+			String empNo = userAttr.getCustomerNo();
 			AuthenticationEntity authenEntity = new AuthenticationEntity();
 			authenEntity.setStatus(Constants.STATUS_NORMAL);
 			authenEntity.setCreateBy(empNo);
@@ -48,11 +51,10 @@ public class UserManageServiceImpl implements UserManageService{
 			if(ObjectUtils.isNotEmpty(authenEntity)) {
 				UserDetailEntity userDetailEntity = new UserDetailEntity();
 				userDetailEntity.setUserId(authenEntity.getId());
-				userDetailEntity.setEmpNo(FunctionUtil.genarateEmpNo(registerReq.getDepartmentId(), authenEntity.getId()));
+				userDetailEntity.setCustomerNo(FunctionUtil.genarateCustomerNo(authenEntity.getId(), authenEntity.getId()));
 				userDetailEntity.setEmail(registerReq.getEmail());
 				userDetailEntity.setTelephone(registerReq.getTelephone());
 				userDetailEntity.setPrefixId(registerReq.getPrefixId());
-				userDetailEntity.setDepartmentId(registerReq.getDepartmentId());
 				userDetailEntity.setFristName(registerReq.getFristName());
 				userDetailEntity.setMiddleName(registerReq.getMiddleName());
 				userDetailEntity.setLastName(registerReq.getLastName());
@@ -73,6 +75,30 @@ public class UserManageServiceImpl implements UserManageService{
 			}
 		}
 		
+	}
+
+	@Override
+	public void update(CustomerUserAttr userAttr, UserManageReqDTO registerReq, Long userId) {
+		
+		Optional<AuthenticationEntity> authenOpt = authenticationRepository.findById(userId);
+		if(authenOpt.isPresent()) {
+			List<UserDetailEntity> userDetailList = userDetailRepository.findByUserId(userId);
+			if(CollectionUtils.isNotEmpty(userDetailList)) {
+				for(UserDetailEntity userDtEntity : userDetailList) {
+					userDtEntity.setFristName(registerReq.getFristName());
+					userDtEntity.setLastName(registerReq.getLastName());
+					userDtEntity.setEmail(registerReq.getEmail());
+					userDtEntity.setTelephone(registerReq.getTelephone());
+					userDtEntity.setPrefixId(registerReq.getPrefixId());
+					userDtEntity.setHouseNo(registerReq.getHouseNo());
+					userDtEntity.setNickName(registerReq.getNickName());
+					userDtEntity.setMiddleName(registerReq.getMiddleName());
+					userDtEntity.setUpdateBy(userAttr.getCustomerName());
+					userDtEntity.setUpdateDate(DateUtil.createTimestmapNow());
+					userDetailRepository.save(userDtEntity);
+				}
+			}
+		}
 	}
 
 }

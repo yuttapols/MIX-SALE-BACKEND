@@ -34,11 +34,8 @@ public class UserDetailEntity {
 	@Column(name = "prefix_id")
 	private Long prefixId;
 	
-	@Column(name = "department_id")
-	private Long departmentId;
-	
-	@Column(name = "emp_no")
-	private String empNo;
+	@Column(name = "customer_no")
+	private String customerNo;
 	
 	@Column(name = "frist_name")
 	private String fristName;
@@ -109,7 +106,4 @@ public class UserDetailEntity {
 	@JoinColumn(name = "prefix_id", referencedColumnName = "id" , insertable=false, updatable=false)
 	private PrefixEntity prefix;
 	
-	@OneToOne
-	@JoinColumn(name = "department_id", referencedColumnName = "id" , insertable=false, updatable=false)
-	private DepartmentEntity department;
 }

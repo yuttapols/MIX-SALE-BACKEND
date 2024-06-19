@@ -9,7 +9,6 @@ public class UserManageReqDTO {
 	private String password;
 	private Long roleId;
 	private Long prefixId;
-	private Long departmentId;
 	private String fristName;
 	private String middleName;
 	private String lastName;

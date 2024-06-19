@@ -72,10 +72,10 @@ public abstract class AbstractCommon {
 		if(org.apache.commons.lang3.StringUtils.isNotBlank(userDetail.getUsername())) {
 			Optional<AuthenticationEntity> dataList = authenticationRepository.findByUserName(userDetail.getUsername());
 			if(dataList.isPresent()) {
-				customerUserAttr.setEmpNo(dataList.get().getUserDetail().getEmpNo());
-				customerUserAttr.setEmpName(dataList.get().getUserDetail().getFristName() + "-" + dataList.get().getUserDetail().getLastName());
+				customerUserAttr.setCustomerNo(dataList.get().getUserDetail().getCustomerNo());
+				customerUserAttr.setCustomerName(dataList.get().getUserDetail().getFristName() + "-" + dataList.get().getUserDetail().getLastName());
 				customerUserAttr.setRoleId(dataList.get().getRoleId());
-				customerUserAttr.setRoleName(dataList.get().getRole().getRoleName());
+				customerUserAttr.setRoleName(dataList.get().getRole().getRoleNameTh());
 			}
 		}
 		

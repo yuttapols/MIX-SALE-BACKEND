@@ -8,4 +8,5 @@ import com.enterprise.mixsale.payload.CustomerUserAttr;
 public interface UserManageService {
 
 	public void save(CustomerUserAttr userAttr, UserManageReqDTO registerReq) throws NoSuchAlgorithmException;
+	public void update(CustomerUserAttr userAttr, UserManageReqDTO registerReq, Long userId);
 }

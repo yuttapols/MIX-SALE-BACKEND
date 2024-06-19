@@ -3,7 +3,9 @@ package com.enterprise.mixsale.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,6 +34,22 @@ public class UserManageController extends AbstractCommon{
 
 		try {
 			manageService.save(userAttr, registerReq);
+			response = getSavedSuccessResponse();
+		} catch (Exception e) {
+			response = getOkResponse(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage()) ;
+		}
+
+		return ResponseEntity.ok(response) ;
+	}
+	
+	@PutMapping("/update/{userId}")
+	public ResponseEntity<ApiResponse> update(HttpServletRequest request, @RequestBody UserManageReqDTO registerReq, @PathVariable(name="userId") Long userId) {
+		ApiResponse response = new ApiResponse();
+		
+		CustomerUserAttr userAttr = super.getCustomerUserAttr(request);
+
+		try {
+			manageService.update(userAttr, registerReq, userId);
 			response = getSavedSuccessResponse();
 		} catch (Exception e) {
 			response = getOkResponse(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage()) ;

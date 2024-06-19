@@ -79,7 +79,7 @@ public class AuthenticationEntity implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		
-		return List.of(new SimpleGrantedAuthority(role.getRoleName()));
+		return List.of(new SimpleGrantedAuthority(role.getRoleNameEng()));
 	}
 
 	@Override

@@ -2,7 +2,7 @@ package com.enterprise.mixsale.util;
 
 public class Constants {
 
-	public static final String INITIALS_NAME_PROJECT = "MXS";
+	public static final String INITIALS_NAME_PROJECT = "NONS";
 	
 	
 	// messageKey

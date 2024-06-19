@@ -68,7 +68,7 @@ public class MenuServiceImpl implements MenuService{
 			.isDropdown(menuReq.getIsDropdown())
 			.roleId(menuReq.getRoleId())
 			.status(Constants.STATUS_NORMAL)
-			.createBy(userAttr.getEmpNo())
+			.createBy(userAttr.getCustomerNo())
 			.createDate(DateUtil.createTimestmapNow()).build();
 			
 			menuEntity = menuRepository.save(menuEntity);
@@ -84,7 +84,7 @@ public class MenuServiceImpl implements MenuService{
 								.menuPathRouterLink(subMenu.getMenuPathRouterLink())
 								.menuId(menuEntity.getId())
 								.status(Constants.STATUS_NORMAL)
-								.createBy(userAttr.getEmpNo())
+								.createBy(userAttr.getCustomerNo())
 								.createDate(DateUtil.createTimestmapNow())
 								.build();
 
@@ -112,7 +112,7 @@ public class MenuServiceImpl implements MenuService{
 			menuEntity.setMenuPathRouterLink(menuReq.getMenuPathRouterLink());
 			menuEntity.setIsDropdown(menuReq.getIsDropdown());
 			menuEntity.setRoleId(menuReq.getRoleId());
-			menuEntity.setUpdateBy(userAttr.getEmpNo());
+			menuEntity.setUpdateBy(userAttr.getCustomerNo());
 			menuEntity.setUpdateDate(DateUtil.createTimestmapNow());
 			menuEntity = menuRepository.save(menuEntity);
 
@@ -128,7 +128,7 @@ public class MenuServiceImpl implements MenuService{
 								.menuPathRouterLink(subMenu.getMenuPathRouterLink())
 								.menuId(menuEntity.getId())
 								.status(Constants.STATUS_NORMAL)
-								.createBy(userAttr.getEmpNo())
+								.createBy(userAttr.getCustomerNo())
 								.createDate(DateUtil.createTimestmapNow())
 								.build();
 
